@@ -2,7 +2,7 @@ version: 1
 jobs:
   hello:
     steps:
-      - echo << env.PROJECT_ID >>
+      - echo '<< env.PROJECT_ID >>'
   world:
     steps:
       - echo "World"
