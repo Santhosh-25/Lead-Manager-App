@@ -7,6 +7,7 @@ jobs:
   Deploy_Appsail:
     runner: Machine
     steps:
+      - node --version  
       - npm install -g zcatalyst-cli
       - catalyst --version
       - npm install
