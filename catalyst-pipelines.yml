@@ -1,19 +1,25 @@
 version: 1
+runners:
+  Machine:
+    config-id: 2
+images:
+  image:
+    image: node:20
+    registry: https://registry.npmjs.org/
+    auth:
+      username: santhosh270
+      password: Catalyst@test123
+
 jobs:
-  hello:
+  Deploy_Appsail:
+    runner: Machine
+    image: image
     steps:
-      - echo '<< env.PROJECT_ID >>'
-  world:
-    steps:
-      - echo "World"
-  hello-world:
-    steps:
-      - echo "Hello World!"
+      - npm install -g zcatalyst-cli
+      - catalyst --version
+      - npm install
+      - catalyst deploy --project << env.PROJECT_NAME >> --org << env.CATALYST_ORG >> --token << env.CATALYST_TOKEN >>
 stages:
-  - name: build
+  - name: test
     jobs:
-      - - hello
-        - world
-      - hello-world
-variables:
-  PROJECT_ID: '864467784564866'
+      - Deploy_Appsail
