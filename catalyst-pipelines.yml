@@ -8,6 +8,7 @@ jobs:
     runner: Machine
     steps:
       - node --version  
+      - catalyst --version
       - npm install -g zcatalyst-cli
       - catalyst --version
       - npm install
