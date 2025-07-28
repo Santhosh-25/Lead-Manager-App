@@ -1,7 +1,8 @@
-version: 1.0
+version: 1
 runners:
   Machine:
     config-id: 3
+
 jobs:
   build-chatrail:
     steps:
