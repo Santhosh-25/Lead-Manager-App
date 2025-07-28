@@ -4,13 +4,12 @@ runners:
     config-id: 3
 
 jobs:
-  build-chatrail:
+  build-chatrail:    
     steps:
       - chmod +x new_build.sh
       - ./new_build.sh --deploy\
+    runner: Machine
 stages:
   - name: build
     jobs:
       - build-chatrail
-
-pipeline-runner: Machine
