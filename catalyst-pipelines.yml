@@ -11,3 +11,5 @@ stages:
   - name: build
     jobs:
       - build-chatrail
+
+pipeline-runner: Machine
