@@ -1,19 +1,13 @@
-version: 1
+version: 1.0
 runners:
   Machine:
-    config-id: 2
-
+    config-id: 3
 jobs:
-  Deploy_Appsail:
-    runner: Machine
+  build-chatrail:
     steps:
-      - node --version  
-      - catalyst --version
-      - npm install -g zcatalyst-cli
-      - catalyst --version
-      - npm install
-      - catalyst deploy --project << env.PROJECT_NAME >> --org << env.CATALYST_ORG >> --token << env.CATALYST_TOKEN >>
+      - chmod +x new_build.sh
+      - ./new_build.sh --deploy\
 stages:
-  - name: test
+  - name: build
     jobs:
-      - Deploy_Appsail
+      - build-chatrail
