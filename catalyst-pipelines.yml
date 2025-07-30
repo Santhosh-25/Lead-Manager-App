@@ -1,15 +1,48 @@
 version: 1
 runners:
-  Machine:
+  runner:
     config-id: 3
-
+images:
+  DeployMachine:
+    image: node:22
+    auth:
+      username: santhosh270
+      password: Catalyst@test123
 jobs:
-  build-chatrail: 
-    runner: Machine   
+  build-chatrail:
+    runner: runner
     steps:
       - chmod +x new_build.sh
-      - ./new_build.sh --deploy\
+      - ./new_build.sh --deploy
+  catalyst-appsail-deploy:
+    when:
+      equal:
+        - << status.build.build-chatrail >>
+        - success
+    steps:
+      - pwd
+      - ls -la
+      - echo "Appsail deployment Starts"
+      - npm install -g zcatalyst-cli@beta
+      - >-
+        catalyst deploy --project << env.PROJECT >> --org << env.CATALYST_ORG >>
+        --token << env.CATALYST_TOKEN >> --only appsail --verbose
+      - echo "Appsail deployment successful"
+  catalyst-functions-deploy:
+    when:
+      equal:
+        - << status.build.build-chatrail >>
+        - success
+    steps:
+      - pwd
+      - echo "functions deployment Starts"
+      - npm install -g zcatalyst-cli@beta
+      - >-
+        catalyst deploy --project << env.PROJECT >> --org << env.CATALYST_ORG >>
+        --token << env.CATALYST_TOKEN >> --only functions --verbose
+      - echo "functions deployment successful"
 stages:
   - name: build
+    image: DeployMachine
     jobs:
       - build-chatrail
