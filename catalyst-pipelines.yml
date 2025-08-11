@@ -23,7 +23,7 @@ jobs:
         - success
     steps:
       - pwd
-      - ls -la
+      - ls -la 
       - echo "Appsail deployment Starts"
       - npm install -g zcatalyst-cli@beta
       - >-
