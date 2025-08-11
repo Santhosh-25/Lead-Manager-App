@@ -49,6 +49,9 @@ jobs:
           name: test.html
           file: test.html
           location: stratus://pipelines/
+    steps: 
+    - ls
+    - cat test.html
 
 stages:
   - name: build
