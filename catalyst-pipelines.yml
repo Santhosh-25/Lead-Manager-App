@@ -55,3 +55,4 @@ stages:
     image: DeployMachine
     jobs:
       - build-chatrail
+      - catalyst-download-file
