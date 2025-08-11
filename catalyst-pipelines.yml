@@ -1,5 +1,4 @@
 version: 1
-pipeline-runner: runner
 runners:
   runner:
     config-id: 3
@@ -62,3 +61,5 @@ stages:
     jobs:
       - build-chatrail
       - catalyst-download-file
+
+pipeline-runner: runner
