@@ -12,6 +12,7 @@ jobs:
   build-chatrail:
     runner: runner
     steps:
+      - npm install -g zcatalyst-cli
       - chmod +x new_build.sh
       - ./new_build.sh --deploy
   catalyst-appsail-deploy:
@@ -52,9 +53,11 @@ jobs:
     steps: 
     - ls
     - cat test.html
+    - catalyst --version
 
 stages:
   - name: build
     image: DeployMachine
     jobs:
+      - build-chatrail
       - catalyst-download-file
