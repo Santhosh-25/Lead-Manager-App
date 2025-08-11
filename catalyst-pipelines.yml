@@ -48,7 +48,7 @@ jobs:
         - type: file
           name: test.html
           file: test.html
-          location: stratus://pipelines/test.html
+          location: stratus://pipelines/
 
 stages:
   - name: build
