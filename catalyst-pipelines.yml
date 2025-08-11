@@ -41,6 +41,15 @@ jobs:
         catalyst deploy --project << env.PROJECT >> --org << env.CATALYST_ORG >>
         --token << env.CATALYST_TOKEN >> --only functions --verbose
       - echo "functions deployment successful"
+  catalyst-download-file:
+    runner: runner
+    artifacts:
+        download:
+        - type: file
+          name: test.html
+          location: stratus://pipelines/test.html
+          file: /test.html
+
 stages:
   - name: build
     image: DeployMachine
