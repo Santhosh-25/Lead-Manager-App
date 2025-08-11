@@ -54,5 +54,4 @@ stages:
   - name: build
     image: DeployMachine
     jobs:
-      - build-chatrail
       - catalyst-download-file
